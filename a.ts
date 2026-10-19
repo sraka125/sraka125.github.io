@@ -5,15 +5,15 @@ let a:boolean = true;
 let clicks:number = 0;
 
 let clck = document.getElementById("clck") || document.createElement("p");
-let dv = (document.getElementById("someof") || document.createElement("div")) as HTMLElement & { disabled: boolean };
+let dv = (document.getElementById("someof") || document.createElement("div"));
 clck.style.position = 'absolute';
 clck.style.top = '320px';
 clck.style.userSelect = 'none';
-dv.disabled = true;
+dv.remove();
 document.addEventListener('click', () => {
 	console.log(a);
 	a = !a;
-	dv.disabled = false;
+	document.body.appendChild(dv);
 	clicks = clicks + 1;
 	console.log(clicks);
 	clck.textContent = clicks.toString();
