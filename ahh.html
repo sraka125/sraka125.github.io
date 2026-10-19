@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Cozy Corner Trap Link</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #0d0f12;
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      margin: 0;
+    }
+
+    #physics-link {
+      position: absolute;
+      padding: 14px 26px;
+      background: linear-gradient(135deg, #00ffcc, #00a8ff);
+      color: #050505;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 99px;
+      text-decoration: none;
+      box-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
+      user-select: none;
+      transform-origin: center center;
+    }
+
+    .hud {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.85rem;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="https://example.com" id="physics-link">Попробуй прижать</a>
+  <div class="hud">Подсказка: забей в угол и кликай</div>
+
+  <script>
+    const link = document.getElementById('physics-link');
+    
+    let posX = window.innerWidth / 2;
+    let posY = window.innerHeight / 2;
+    let vx = 0;
+    let vy = 0;
+    
+    // Настройки физики
+    const repulsionRadius = 130;
+    const forceStrength = 13;
+    const damping = 0.88;
+    const wallBounce = -0.55;
+    
+    let mouseX = posX;
+    let mouseY = posY;
+
+    // Масштаб для эффекта при ударе
+    let scaleX = 1;
+    let scaleY = 1;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function physicsUpdate() {
+      const rect = link.getBoundingClientRect();
+      const halfW = rect.width / 2;
+      const halfH = rect.height / 2;
+
+      // Вектор от курсора к центру объекта
+      const dx = posX - mouseX;
+      const dy = posY - mouseY;
+      const distance = Math.hypot(dx, dy);
+
+      // Чистое отталкивание без магии
+      if (distance < repulsionRadius && distance > 0.1) {
+        const nx = dx / distance;
+        const ny = dy / distance;
+        const penetration = (repulsionRadius - distance) / repulsionRadius;
+        
+        vx += nx * penetration * forceStrength;
+        vy += ny * penetration * forceStrength;
+      }
+
+      // Трение
+      vx *= damping;
+      vy *= damping;
+
+      // Движение
+      posX += vx;
+      posY += vy;
+
+      const speed = Math.hypot(vx, vy);
+      let hitWall = false;
+
+      // Удары о границы экрана
+      if (posX - halfW < 0) {
+        posX = halfW;
+        vx *= wallBounce;
+        hitWall = true;
+      } else if (posX + halfW > window.innerWidth) {
+        posX = window.innerWidth - halfW;
+        vx *= wallBounce;
+        hitWall = true;
+      }
+
+      if (posY - halfH < 0) {
+        posY = halfH;
+        vy *= wallBounce;
+        hitWall = true;
+      } else if (posY + halfH > window.innerHeight) {
+        posY = window.innerHeight - halfH;
+        vy *= wallBounce;
+        hitWall = true;
+      }
+
+      // Сплющивание при сильном ударе
+      if (hitWall && speed > 3) {
+        const stretch = Math.min(speed * 0.012, 0.35);
+        if (Math.abs(vx) < Math.abs(vy)) {
+          scaleX = 1 + stretch;
+          scaleY = 1 - stretch * 0.6;
+        } else {
+          scaleX = 1 - stretch * 0.6;
+          scaleY = 1 + stretch;
+        }
+      } else {
+        scaleX += (1 - scaleX) * 0.15;
+        scaleY += (1 - scaleY) * 0.15;
+      }
+
+      // Наклон по вектору движения
+      const angleDeg = Math.atan2(vy, vx) * (180 / Math.PI);
+      const rotate = speed > 1.5 ? angleDeg : 0;
+
+      link.style.left = `${posX - halfW}px`;
+      link.style.top = `${posY - halfH}px`;
+      link.style.transform = `rotate(${rotate}deg) scale(${scaleX}, ${scaleY})`;
+
+      requestAnimationFrame(physicsUpdate);
+    }
+
+    physicsUpdate();
+  </script>
+</body>
+</html>

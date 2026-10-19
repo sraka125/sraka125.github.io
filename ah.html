@@ -1,0 +1,21 @@
+<meta charset="UTF-8">
+<a href="https://example.com" id="trick-link" style="position: relative; display: inline-block;">
+  Секретная ссылка
+</a>
+
+<script>
+  const link = document.getElementById('trick-link');
+  link.addEventListener('mouseover', () => {
+    const x = Math.random() * 200 - 100;
+    const y = Math.random() * 100 - 50;
+    link.style.transform = `translate(${x}px, ${y}px)`;
+  });
+  console.log('%cСТОЙ! 🛑', 'color: red; font-size: 30px; font-weight: bold;');
+console.log('%cТы зачем сюда залез? Мы всё записываем.', 'color: yellow; font-size: 14px; background: black; padding: 4px;');
+
+// При попытке выделить текст или открыть контекстное меню — шутливое предупреждение
+document.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  alert('Правой кнопкой мыши здесь могут пользоваться только настоящие хакеры. Ты не прошел.');
+});
+</script>

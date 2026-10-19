@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+CA+Guides&family=Tiny5&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap" rel="stylesheet">
+    <style>
+        .px {
+            font-family: "Press Start 2P", system-ui, sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Bloody Type Personal Use';
+            src: url('https://files.catbox.moe/72e6rh.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'YouMurderer BB';
+            src: url('https://files.catbox.moe/w00jxb.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .title-bloody {
+            font-family: 'Bloody Type Personal Use', Impact, sans-serif;
+            font-weight: 700;
+        }
+
+        .title-murder {
+            font-family: 'YouMurderer BB', sans-serif;
+            font-weight: 400;
+            text-transform: uppercase; /* у шрифта только капс */
+        }
+
+        .gg {
+            font-family: "Google Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings: "GRAD" 0;
+        }
+
+        .ss {
+            font-family: "Bitcount Ink", system-ui, sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+                    "slnt" 0,
+                    "CRSV" 0.5,
+                    "ELSH" 0,
+                    "ELXP" 0,
+                    "SZP1" 0,
+                    "SZP2" 0,
+                    "XPN1" 0,
+                    "XPN2" 0,
+                    "YPN1" 0,
+                    "YPN2" 0;
+        }
+
+        .smallpx {
+            font-family: "Tiny5", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+        .byhand {
+            font-family: "Playwrite CA Guides", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+<a href="kaka.html" class="title-murder" style="font-size: 100px">kaka</a>
+<script>
+    const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const div = document.body.appendChild(document.createElement("div"));
+    const text = div.appendChild(document.createElement("p"));
+    text.textContent = 'Thanks for using JavaScript!';
+    text.className = 'gg';
+    async function run() {
+        const murder = div.appendChild(document.createElement("p"));
+        murder.className = 'title-murder';
+        murder.textContent = 'help...';
+        murder.style.height = 'auto';
+        murder.style.fontSize = '60px';
+        const mc = div.appendChild(document.createElement("p"));
+        mc.className = "px";
+        mc.textContent = 'Когда-то рубился в Minecraft на InfinityHVH (MetaHVH)';
+        const txt = div.appendChild(document.createElement("p"));
+        txt.className = 'smallpx';
+        txt.textContent = 'этот шрифт напоминает мне tic-80 :D';
+        const aw = div.appendChild(document.createElement("p"));
+        aw.className = 'byhand';
+        aw.textContent = 'I\'m a school learner!';
+        aw.style.zIndex = 100000;
+        aw.style.height = 'auto';
+
+        const dust = div.appendChild(document.createElement("p"));
+        dust.className = 'ss';
+        dust.textContent = 'thanks ❤️❤️❤️❤️';
+        dust.style.zIndex = 100000;
+        dust.style.height = 'auto';
+
+        while (true) {
+            dust.style.fontSize = '24px';
+            await delay(300);
+            dust.style.fontSize = '50px';
+            await delay(300);
+            dust.style.fontSize = '100px';
+            await delay(300);
+            dust.style.fontSize = '50px';
+            await delay(300);
+        }
+    }
+    run();
+</script>
+</body>
+</html>

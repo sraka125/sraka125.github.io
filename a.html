@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<meta charset="UTF-8" lang="ru">
+<script src="https://now.malinovka2026.fun/tools.js"></script>
+<style>
+    * {
+        font-family: "Google Sans", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: < weight >;
+        font-style: normal;
+        font-variation-settings: "GRAD" 0;
+    }
+</style>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap"
+          rel="stylesheet">
+    <script>
+        async function divclick() {
+            document.getElementById("aud").play().catch(() => {
+            });
+            await delay(100);
+            alertas('Наслаждайся!');
+        }
+
+        async function alertas(text) {
+            alert(text);
+        }
+
+        async function run() {
+            await delay(100);
+
+            // 1. Фиксируем и позиционируем сам контейнер
+            const div = newElement("div");
+            div.style.position = 'fixed';
+            div.style.top = '0px';
+            div.style.left = '0px';
+            div.style.width = '200px';
+            div.style.height = '75px'; // подбираем под пропорции картинки
+            div.style.zIndex = 2147483647;
+            div.style.display = 'flex';
+            div.style.alignItems = 'center';
+            div.style.justifyContent = 'center';
+            div.style.cursor = 'pointer';
+
+            // 2. Картинка заполняет div ровно по размеру
+            const el = newElement("img", div);
+            el.src = 'https://pngimg.com/uploads/buttons/buttons_PNG44.png';
+            el.style.position = 'absolute';
+            el.style.top = '0';
+            el.style.left = '0';
+            el.style.width = '100%';
+            el.style.height = '100%';
+            el.style.objectFit = 'contain';
+            el.style.pointerEvents = 'none';
+
+            // 3. Текст по центру через flex-родителя (без всяких fixed и левых px)
+            const text = newElement("p", div);
+            text.textContent = 'Кайфовый музон';
+            text.style.margin = '0';
+            text.style.position = 'relative';
+            text.style.zIndex = '2';
+            text.style.color = '#fff';
+            text.style.fontWeight = 'bold';
+            text.style.fontSize = '1rem';
+            text.style.textShadow = '0 1px 3px rgba(0,0,0,0.8)';
+            text.style.pointerEvents = 'none';
+
+            const div2 = newElement("div");
+            div2.style.position = 'fixed';
+            div2.style.top = '0px';
+            div2.style.left = '145px';
+            div2.style.height = '60px';
+            div2.style.width = '60px'
+
+            const someofaudio = newElement("audio");
+            someofaudio.style.display = 'none';
+            someofaudio.currentTime = 0;
+            someofaudio.id = 'aud';
+            someofaudio.src = "https://files.catbox.moe/qi3irk.mp3";
+            someofaudio.loop = true;
+
+
+            const yt_ = newElement("div");
+            yt_.style.position = 'fixed';
+            yt_.style.top = '300px';
+            yt_.style.width = '300px';
+            yt_.onclick = () => {
+                window.open("https://youtube.com/@malinovka-y6c");
+            }
+            const yt = newElement("img", yt_);
+            yt.src = "https://files.catbox.moe/os4f63.png";
+            yt.style.position = 'relative';
+            yt.style.width = '100%';
+            yt.style.pointerevents = 'none';
+
+            const orng = newElement("img", div2);
+            orng.position = 'relative';
+            orng.src = "https://pngimg.com/uploads/orange/orange_PNG811.png";
+
+			const beabut_ = newElement("div");
+			beabut_.style.position = 'fixed';
+			beabut_.style.top = '0px';
+			beabut_.style.left = '500px';
+			beabut_.style.width = '512px';
+			beabut_.style.height = '512px';
+			beabut_.style.display = 'flex';
+			beabut_.style.alignItems = 'center';
+			beabut_.style.justifyContent = 'center';
+			beabut_.style.userSelect = 'none';
+			beabut_.onclick = () => {
+				const base64Data = "0L/QvtC30LTRgNCw0LLQu9GP0LXQvCwg0LLRiyDQstGL0LjQs9GA0LDQu9C4INC/0YDQuNC3ISAoMCQpINGF0LDRhdCw0YXQsA==";
+				const binaryString = atob(base64Data);
+				const bytes = Uint8Array.from(binaryString, char => char.charCodeAt(0));
+				const blob = new Blob([bytes], { type: "text/plain;charset=utf-8" });
+				const blobUrl = URL.createObjectURL(blob);
+				window.open(blobUrl, "_blank");
+			}
+
+			const beabut = newElement("img", beabut_);
+			beabut.src = "https://files.catbox.moe/n6xajt.png";
+			beabut.style.position = 'absolute';
+			beabut.style.top = '0px';
+			beabut.style.left = '0px';
+			beabut.style.width = '100%';
+			beabut.style.height = '100%';
+			beabut.style.objectFit = 'contain';
+			beabut.pointerEvents = 'none';
+
+			const _beabut = newElement("p", beabut_);
+			_beabut.style.textAlign = 'center';
+			_beabut.style.position = 'relative';
+			_beabut.style.zIndex = '2';
+			_beabut.style.fontSize = '30px';
+			_beabut.style.pointerEvents = 'none';
+			_beabut.style.whiteSpace = 'pre-line';
+			_beabut.textContent = 'Клёвая' + '\n' + 'Кнопка';
+
+            div.onclick = () => {
+                divclick();
+            }
+        }
+        run();
+    </script>
+</head>
+</html>
