@@ -5,14 +5,15 @@ let a:boolean = true;
 let clicks:number = 0;
 
 let clck = document.getElementById("clck") || document.createElement("p");
-
+let dv = document.getElementById("someof") || newElement("div");
 clck.style.position = 'absolute';
 clck.style.top = '320px';
 clck.style.userSelect = 'none';
-
+dv.disabled = true;
 document.addEventListener('click', () => {
 	console.log(a);
 	a = !a;
+	dv.disabled = false;
 	clicks = clicks + 1;
 	console.log(clicks);
 	clck.textContent = clicks.toString();
