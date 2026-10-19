@@ -5,7 +5,7 @@ let a:boolean = true;
 let clicks:number = 0;
 
 let clck = document.getElementById("clck") || document.createElement("p");
-let dv = document.getElementById("someof") || newElement("div");
+let dv = (document.getElementById("someof") || document.createElement("div")) as HTMLElement & { disabled: boolean };
 clck.style.position = 'absolute';
 clck.style.top = '320px';
 clck.style.userSelect = 'none';
